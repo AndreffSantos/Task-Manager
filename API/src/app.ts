@@ -4,6 +4,7 @@ import { userRoute } from './routes';
 const app: Express = express();
 const port = 80;
 
+app.use(express.json())
 app.use('/user', userRoute );
 
 app.listen(port, () => console.log(`Sevidor rodando na porta ${port}`));
