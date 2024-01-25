@@ -1,4 +1,6 @@
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import { User } from "../interfaces/User";
+import { dataUpdated } from "../interfaces/UserDataUpdated";
 import JWT from "../utils/jwt";
 
 export default class UserService {
@@ -31,7 +33,7 @@ export default class UserService {
         return token;
     }
 
-    public async update(id: number, obj: User) {
+    public async update(id: number, obj: dataUpdated) {
         const user = await this.model.user.findUnique({
             where: { id, }
         });
