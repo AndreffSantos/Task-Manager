@@ -1,4 +1,5 @@
-import express, { Request, Response, Express } from 'express';
+import "express-async-errors"
+import express, { Express } from 'express';
 import { userRoute } from './routes';
 import Handler from './handler';
 
