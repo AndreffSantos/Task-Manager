@@ -1,11 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { Task } from "../interfaces/Task";
 import { taskUpdated } from "../interfaces/TaskUpdated";
 
 export default class TaskService {
     private model = new PrismaClient();
 
-    public async create(newTask: Task) {
+    public async create(newTask: {
+        title: string,
+        description?: string,
+        userId: number,
+    }) {
         const created = await this.model.task.create({
             data: newTask
         })

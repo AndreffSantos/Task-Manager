@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
 import { Prisma } from '@prisma/client';
+import { JsonWebTokenError } from "jsonwebtoken";
 
 export default class Handler {
 
@@ -16,6 +17,9 @@ export default class Handler {
         }
         else if (erro instanceof Prisma.PrismaClientKnownRequestError) {
             return res.status(500).json(erro);
+        }
+        else if (erro instanceof JsonWebTokenError) {
+            return res.json(erro)
         }
         else {
             console.log(erro)
