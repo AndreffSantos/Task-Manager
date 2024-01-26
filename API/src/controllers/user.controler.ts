@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UserService from "../services/user.service";
 import { userSchema } from "../interfaces/User";
-import { dataUpdatedSchema } from "../interfaces/UserDataUpdated";
+import { userUpdatedSchema } from "../interfaces/UserUpdated";
 
 export default class UserController {
     private service: UserService = new UserService();
@@ -24,7 +24,7 @@ export default class UserController {
 
     public async update(req: Request, res: Response) {
         const id: number = Number.parseInt(req.params.id);
-        const parsed = dataUpdatedSchema.parse(req.body)
+        const parsed = userUpdatedSchema.parse(req.body)
         const updated = await this.service.update(id, parsed);
 
         return res.json(updated);
