@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { User } from "../interfaces/User";
 import { userUpdated } from "../interfaces/UserUpdated";
 import JWT from "../utils/jwt";
@@ -18,9 +18,11 @@ export default class UserService {
         const user = await this.model.user.findUnique({
             where: {
                 email,
-                password, 
+                password,
             }
         });
+
+        if (!user) throw Prisma.PrismaClientUnknownRequestError;
 
         const payload = {
             id: user?.id,
