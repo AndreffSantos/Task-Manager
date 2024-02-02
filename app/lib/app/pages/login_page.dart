@@ -7,8 +7,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key, required this.title});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key, required this.title});
+
   final String title;
 
   void navigation(BuildContext context) {
@@ -47,10 +48,9 @@ class RegisterPage extends StatelessWidget {
                   ),
                   child: !store.loading
                       ? MyCard(
-                          register: true,
                           store: store,
                           title: title,
-                          onPressed: (context) => store.signin(),
+                          onPressed: (context) => store.login(),
                         )
                       : const CircularProgressIndicator(),
                 ),
